@@ -9,11 +9,14 @@
         body {
             background-color: pink;
             color: white;
+            overflow: hidden;
+            position: relative;
         }
 
         h1 {
             font-weight: bold;
             font-size: 2rem;
+            display: none; /* Hide title initially */
         }
 
         p {
@@ -25,6 +28,8 @@
 
         .container {
             padding: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         #startButton {
@@ -40,17 +45,55 @@
             background-color: #f1f1f1;
         }
 
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 100px;
+            height: 150px;
+            background-color: red;
+            border-radius: 50% 50% 0 0;
+            animation: float 10s linear infinite;
+            z-index: 1;
+        }
+
+        .balloon:nth-child(odd) {
+            background-color: yellow;
+        }
+
+        .balloon:nth-child(even) {
+            background-color: blue;
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -150px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(50px);
+            }
+            100% {
+                bottom: 110%;
+                transform: translateX(-50px);
+            }
+        }
+
         @media (max-width: 576px) {
             h1 {
-                font-size: 30px;
+                font-size: 1.5rem;
             }
 
             p {
-                font-size: 20px;
+                font-size: 0.9rem;
             }
 
             #startButton {
                 font-size: 1.2rem;
+            }
+
+            .balloon {
+                width: 70px;
+                height: 100px;
             }
         }
     </style>
@@ -60,10 +103,17 @@
     <div class="container text-center d-flex justify-content-center align-items-center vh-100">
         <div>
             <button id="startButton">انقر فوق لي</button>
-            <h1 style="display: none;">Happy Birthday!</h1> <!-- Hide title initially -->
+            <h1>Happy Birthday!</h1> <!-- Hide title initially -->
             <p>Happy birthday my baby, asawa, girlbestfriend, enemy, mahal, langga, life, my sun and moon. More birthdays to come, baby ko! Yey, this is your first birthday with me! You’ve gained another year, baby ko, and I want you to know that no matter how many years are added, you're still my baby, okay? I'm always here to help you with everything and through all your problems, okay?! I love you so much, baby! Enjoy your day, okay??? See you soon! Mwapsss!!!</p>
         </div>
     </div>
+
+    <!-- Background Balloons -->
+    <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="balloon" style="left: 50%; animation-delay: 4s;"></div>
+    <div class="balloon" style="left: 70%; animation-delay: 6s;"></div>
+    <div class="balloon" style="left: 90%; animation-delay: 8s;"></div>
 
     <audio id="birthdayMusic">
         <source src="bday.mp3" type="audio/mpeg">
