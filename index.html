@@ -26,6 +26,20 @@
             padding: 20px;
         }
 
+        #startButton {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: white;
+            color: pink;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #startButton:hover {
+            background-color: #f1f1f1;
+        }
+
         @media (max-width: 576px) {
             h1 {
                 font-size: 1.5rem;
@@ -34,38 +48,45 @@
             p {
                 font-size: 0.9rem;
             }
+
+            #startButton {
+                font-size: 1.2rem;
+            }
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <audio id="birthdayMusic" autoplay>
-        <source src="https://jmp.sh/s/J06TcGIMiOipBwANcMAJ" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
     <div class="container text-center d-flex justify-content-center align-items-center vh-100">
         <div>
+            <button id="startButton">Click Me!</button>
             <h1>Happy Birthday!</h1>
             <p>Happy birthday my baby, asawa, girlbestfriend, enemy, mahal, langga, life, my sun and moon. More birthdays to come, baby ko! Yey, this is your first birthday with me! You’ve gained another year, baby ko, and I want you to know that no matter how many years are added, you're still my baby, okay? I'm always here to help you with everything and through all your problems, okay?! I love you so much, baby! Enjoy your day, okay??? See you soon! Mwapsss!!!</p>
+            
         </div>
     </div>
 
-    <script>
-        // Automatically play birthday music
-        window.addEventListener('DOMContentLoaded', () => {
-            const music = document.getElementById('birthdayMusic');
-            music.play().catch(() => {
-                console.log("Auto-play was blocked");
-            });
+    <audio id="birthdayMusic">
+        <source src="bday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-            // Trigger confetti
-            confetti({
-                particleCount: 1500,
-                spread: 100,
-                origin: { y: 0.8 }
+    <script>
+        // Wait for the user to interact with the page
+        document.getElementById('startButton').addEventListener('click', () => {
+            const music = document.getElementById('birthdayMusic');
+            music.play().then(() => {
+                // Trigger confetti
+                confetti({
+                    particleCount: 1500,
+                    spread: 100,
+                    origin: { y: 0.8 }
+                });
+            }).catch(error => {
+                console.log("Playback failed: " + error);
             });
         });
     </script>
 </body>
 </html>
+
